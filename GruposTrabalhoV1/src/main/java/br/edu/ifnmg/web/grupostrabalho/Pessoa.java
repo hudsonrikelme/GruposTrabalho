@@ -62,6 +62,7 @@ public class Pessoa implements Serializable {
     @Column(nullable = false)
     private LocalDate nascimento;
 
+    //Notação Transient não utilizada para que a idade fosse persistida no BD
 //    @Transient
     private Byte idade;
 
