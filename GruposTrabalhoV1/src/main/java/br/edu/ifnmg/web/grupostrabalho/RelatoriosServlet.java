@@ -138,6 +138,7 @@ public class RelatoriosServlet extends HttpServlet {
                 out.println("<li>" + o.getNome() + "," + o.getEndereco() + "</li>");
             }
             out.println("</ul>");
+            //Questao 4
             out.println("</ul>");
             out.println("<h2>04 - Pessoas que Moram em Avenidas</h2>");
             out.println("<ul>");
