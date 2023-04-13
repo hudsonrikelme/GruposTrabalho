@@ -55,7 +55,7 @@ public class RelatoriosServlet extends HttpServlet {
             //Buscar Todas as Pessoas que Moram em Avenidas
             List<Pessoa> pessoaAvenida = pessoaservice.buscarPessoasAvenida();
             List<Pessoa> pessoaAvenidaTQ = pessoaservice.buscarPessoasAvenidaTypedQuery();
-//            List<Pessoa> pessoaAvenidaNQ = pessoaservice.buscarPessoasAvenidaNamedQuery();
+            List<Pessoa> pessoaAvenidaNQ = pessoaservice.buscarPessoasAvenidaNamedQuery();
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -156,11 +156,11 @@ public class RelatoriosServlet extends HttpServlet {
             }
             out.println("</ul>");
 
-//            out.println("<h2>c)Por meio de NamedQuery</h2>");
-//            out.println("<ul>");
-//            for (Pessoa pessoa : pessoaAvenidaNQ) {
-//                out.println("<li>" + pessoa.getNome() + "-->" + pessoa.getEndereco().getTipologradouro() + "</li>");
-//            }
+            out.println("<h2>c)Por meio de NamedQuery</h2>");
+            out.println("<ul>");
+            for (Pessoa pessoa : pessoaAvenidaNQ) {
+                out.println("<li>" + pessoa.getNome() + "-->" + pessoa.getEndereco().getTipologradouro() + "</li>");
+            }
             out.println("</ul>");
             out.println("</body>");
             out.println("</html>");

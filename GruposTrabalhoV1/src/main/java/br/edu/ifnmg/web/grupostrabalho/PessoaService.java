@@ -129,11 +129,11 @@ public class PessoaService implements PessoaServiceLocal {
         return q.getResultList();
     }
 
-//    @Override
-//    public List<Pessoa> buscarPessoasAvenidaNamedQuery() {
-//        TypedQuery q = em.createNamedQuery("Pessoa.nameAndAdressDTO", Pessoa.class);
-//        q.setParameter("tipo", Endereco.TipoLogradouro.AVENIDA);
-//        return q.getResultList();
-//    }
+    @Override
+    public List<Pessoa> buscarPessoasAvenidaNamedQuery() {
+        TypedQuery q = em.createNamedQuery("Pessoa.findPeopleAvenue", Pessoa.class);
+        q.setParameter("tipo", Endereco.TipoLogradouro.AVENIDA);
+        return q.getResultList();
+    }
 //</editor-fold>
 }

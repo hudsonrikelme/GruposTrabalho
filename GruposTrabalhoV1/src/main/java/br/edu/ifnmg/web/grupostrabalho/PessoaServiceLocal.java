@@ -34,5 +34,5 @@ public interface PessoaServiceLocal {
 
     List<Pessoa> buscarPessoasAvenidaTypedQuery();
 
-//    List<Pessoa> buscarPessoasAvenidaNamedQuery();
+    List<Pessoa> buscarPessoasAvenidaNamedQuery();
 }
