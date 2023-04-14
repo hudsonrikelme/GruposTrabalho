@@ -43,7 +43,25 @@ import javax.persistence.OneToOne;
             + "JOIN p.endereco e "
             + "WHERE e.tipologradouro = "
             + ":tipo"
-    ),})
+    ),
+    @NamedQuery(
+            name = "Pessoa.findPeopleNotSquare",
+            query = "SELECT p FROM Pessoa p "
+            + "JOIN p.endereco e "
+            + "WHERE e.tipologradouro != "
+            + ":tipo"
+    ),
+    @NamedQuery(
+            name = "Pessoa.findPeopleAndPhones",
+            query = "SELECT p.nome, t.ddd, t.numero "
+            + "FROM Pessoa p "
+            + "JOIN p.telefones t "
+    ),
+    @NamedQuery(
+            name = "Grupo.findGroupInative",
+            query = "SELECT g FROM Grupo g WHERE g.ativo = false"
+    ),    
+})
 
 //</editor-fold>
 public class Pessoa implements Serializable {

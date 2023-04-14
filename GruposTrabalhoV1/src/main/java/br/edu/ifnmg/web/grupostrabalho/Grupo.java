@@ -113,10 +113,10 @@ public class Grupo implements Serializable {
     public String toString() {
         return "Grupo{"
                 + "id=" + id
-                + ", nome=" + nome
-                + ", ativo=" + ativo
-                + ", lider=" + lider.getNome()
-                + ", atuacoes=" + atuacoes
+                + "<br>, nome=" + nome
+                + "<br>, ativo=" + ativo
+                + "<br>, lider=" + lider.getNome()
+                + "<br>, atuacoes=" + atuacoes
                 + '}';
     }
 

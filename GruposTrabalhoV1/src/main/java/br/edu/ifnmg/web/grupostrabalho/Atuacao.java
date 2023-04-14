@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifnmg.web.grupostrabalho;
 
 import java.io.Serializable;
@@ -113,10 +109,10 @@ public class Atuacao implements Serializable {
     public String toString() {
         return "Atuacao{"
                 + "id=" + id
-                + ", inicio=" + inicio
-                + ", termino=" + termino
-                + ", pessoa=" + pessoa.getNome()
-                + ", grupo=" + grupo.getNome()
+                + "<br>, inicio=" + inicio
+                + "<br>, termino=" + termino
+                + "<br>, pessoa=" + pessoa.getNome()
+                + "<br>, grupo=" + grupo.getNome()
                 + '}';
     }
 

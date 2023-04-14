@@ -135,5 +135,111 @@ public class PessoaService implements PessoaServiceLocal {
         q.setParameter("tipo", Endereco.TipoLogradouro.AVENIDA);
         return q.getResultList();
     }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Pessoas Que não Moram em Pracas">
+    /**
+     * Pessoas que não moram em pracas
+     */
+    @Override
+    public List<Pessoa> buscarPessoasNaoPraca() {
+        Query q = em.createQuery("SELECT p FROM Pessoa p "
+                + "JOIN p.endereco e "
+                + "WHERE e.tipologradouro != "
+                + ":tipo");
+        q.setParameter("tipo", Endereco.TipoLogradouro.PRACA);
+        return (List<Pessoa>) q.getResultList();
+    }
+
+    @Override
+    public List<Pessoa> buscarPessoasNaoPracaTypedQuery() {
+        TypedQuery q = em.createQuery("SELECT p FROM Pessoa p "
+                + "JOIN p.endereco e "
+                + "WHERE e.tipologradouro != "
+                + ":tipo", Pessoa.class);
+        q.setParameter("tipo", Endereco.TipoLogradouro.PRACA);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Pessoa> buscarPessoasNaoPracaNamedQuery() {
+        TypedQuery q = em.createNamedQuery("Pessoa.findPeopleNotSquare", Pessoa.class);
+        q.setParameter("tipo", Endereco.TipoLogradouro.PRACA);
+        return q.getResultList();
+    }
+
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Pessoas e Seus Respectivos Telefones">
+    /**
+     * Pessoas e Seus Respectivos Telefones
+     */
+    @Override
+    public List<Object[]> buscarPessoaTelefones() {
+        return em.createQuery("SELECT p.nome, t.ddd, t.numero "
+                + "FROM Pessoa p JOIN p.telefones t")
+                .getResultList();
+    }
+
+    @Override
+    public List<Object[]> buscarPessoaTelefonesTypedQuery() {
+        TypedQuery<Object[]> q = em.createQuery(
+                "SELECT p.nome, t.ddd, t.numero FROM Pessoa p JOIN p.telefones t", Object[].class);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Object[]> buscarPessoaTelefonesNamedQuery() {
+        TypedQuery<Object[]> q = em.createNamedQuery("Pessoa.findPeopleAndPhones", Object[].class);
+        return q.getResultList();
+    }
+//</editor-fold>
+    
+    
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="Grupos não Ativos">
+
+    /**
+     * Grupos Não Ativos
+     */
+    @Override
+    public List<Grupo> buscarGruposInativos() {
+        return em.createQuery("SELECT g FROM Grupo g WHERE g.ativo = false")
+                .getResultList();
+    }
+
+    @Override
+    public List<Grupo> buscarGruposInativosTypedQuery() {
+        TypedQuery q = em.createQuery(
+                "SELECT g FROM Grupo g WHERE g.ativo = false", Grupo.class);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Grupo> buscarGrupoInativosNamedQuery() {
+        TypedQuery<Grupo> q = em.createNamedQuery("Grupo.findGroupInative", Grupo.class);
+        return q.getResultList();
+    }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Líderes dos grupos">
+//    @Override
+//    public List<Object> buscarLideres() {
+//        return em.createQuery("SELECT g.nome, g.lider FROM Grupo g ")
+//                .getResultList();
+//    }
+
+//    @Override
+//    public List<Grupo> buscarLideresTypedQuery() {
+//        TypedQuery q = em.createQuery(
+//                "SELECT g FROM Grupo g WHERE g.ativo = false", Grupo.class);
+//        return q.getResultList();
+//    }
+//
+//    @Override
+//    public List<Grupo> buscarLideresNamedQuery() {
+//        TypedQuery<Grupo> q = em.createNamedQuery("Grupo.findGroupInative", Grupo.class);
+//        return q.getResultList();
+//    }
 //</editor-fold>
 }

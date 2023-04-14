@@ -57,6 +57,25 @@ public class RelatoriosServlet extends HttpServlet {
             List<Pessoa> pessoaAvenidaTQ = pessoaservice.buscarPessoasAvenidaTypedQuery();
             List<Pessoa> pessoaAvenidaNQ = pessoaservice.buscarPessoasAvenidaNamedQuery();
 
+            //Buscar Pessoas que não Moram em Pracas
+            List<Pessoa> pessoaNaoPraca = pessoaservice.buscarPessoasNaoPraca();
+            List<Pessoa> pessoaNaoPracaTQ = pessoaservice.buscarPessoasNaoPracaTypedQuery();
+            List<Pessoa> pessoaNaoPracaNQ = pessoaservice.buscarPessoasNaoPracaNamedQuery();
+
+            //Buscar Pessoas e Seus Respectivos Telefones
+            List<Object[]> pessoaTelefones = pessoaservice.buscarPessoaTelefones();
+            List<Object[]> pessoaTelefonesTQ = pessoaservice.buscarPessoaTelefonesTypedQuery();
+            List<Object[]> pessoaTelefonesNQ = pessoaservice.buscarPessoaTelefonesNamedQuery();
+
+            //Buscar Grupos Inativos
+            List<Grupo> grupoinativo = pessoaservice.buscarGruposInativos();
+            List<Grupo> grupoinativoTQ = pessoaservice.buscarGruposInativosTypedQuery();
+            List<Grupo> grupoinativoNQ = pessoaservice.buscarGrupoInativosNamedQuery();
+            
+            //Buscar Grupos e respectivos Líderes
+//            List<Object> grupolider = pessoaservice.buscarLideres();
+            
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -162,8 +181,153 @@ public class RelatoriosServlet extends HttpServlet {
                 out.println("<li>" + pessoa.getNome() + "-->" + pessoa.getEndereco().getTipologradouro() + "</li>");
             }
             out.println("</ul>");
+
+            //Questao 5
+            out.println("</ul>");
+            out.println("<h2>05 - Pessoas que não Moram em Pracas</h2>");
+            out.println("<ul>");
+            out.println("<h2>a)Por Meio de Query</h2>");
+            out.println("<ul>");
+
+            for (Pessoa pessoa : pessoaNaoPraca) {
+                out.println("<li>" + pessoa.getNome() + " --> " + pessoa.getEndereco().getTipologradouro() + "</li>");
+            }
+            out.println("</ul>");
+            out.println("<h2>b)Por meio de TypedQuery</h2>");
+            out.println("<ul>");
+            for (Pessoa pessoa : pessoaNaoPracaTQ) {
+                out.println("<li>" + pessoa.getNome() + "-->" + pessoa.getEndereco().getTipologradouro() + "</li>");
+            }
+            out.println("</ul>");
+
+            out.println("<h2>c)Por meio de NamedQuery</h2>");
+            out.println("<ul>");
+            for (Pessoa pessoa : pessoaNaoPracaNQ) {
+                out.println("<li>" + pessoa.getNome() + "-->" + pessoa.getEndereco().getTipologradouro() + "</li>");
+            }
+            out.println("</ul>");
+
+            //Questao 6
+            out.println("</ul>");
+            out.println("<h2>06 - Pessoas e Seus Respectivos Telefones</h2>");
+            out.println("<ul>");
+            out.println("<h2>a)Por Meio de Query</h2>");
+            out.println("<ul>");
+            
+            for (Object[] resultado : pessoaTelefones) {
+                String nome = (String) resultado[0];
+                Byte ddd = (Byte) resultado[1];
+                Integer numero = (Integer) resultado[2];
+                out.println("<li>" + nome + "--> (" + ddd + ") " + numero + "</li>");
+            }
+            out.println("</ul>");
+            out.println("<h2>b)Por meio de TypedQuery</h2>");
+            out.println("<ul>");
+            for (Object[] resultado : pessoaTelefonesTQ) {
+                String nome = (String) resultado[0];
+                Byte ddd = (Byte) resultado[1];
+                Integer numero = (Integer) resultado[2];
+                out.println("<li>" + nome + "--> (" + ddd + ") " + numero + "</li>");
+            }
+            out.println("</ul>");
+
+            out.println("<h2>c)Por meio de NamedQuery</h2>");
+            out.println("<ul>");
+            for (Object[] resultado : pessoaTelefonesNQ) {
+                String nome = (String) resultado[0];
+                Byte ddd = (Byte) resultado[1];
+                Integer numero = (Integer) resultado[2];
+                out.println("<li>" + nome + "--> (" + ddd + ") " + numero + "</li>");
+            }
+            out.println("</ul>");
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            //Questao 11
+            out.println("</ul>");
+            out.println("<h2>11 - Grupos não ativos</h2>");
+            out.println("<ul>");
+            out.println("<h2>a)Por Meio de Query</h2>");
+            out.println("<ul>");
+            
+            for (Grupo g : grupoinativo) {
+                out.println("<li>" + g + "</li>");
+            }
+            out.println("</ul>");
+            out.println("<h2>b)Por meio de TypedQuery</h2>");
+            out.println("<ul>");
+           for (Grupo g : grupoinativoTQ) {
+                out.println("<li>" + g + "</li>");
+            }
+            
+            out.println("</ul>");
+
+            out.println("<h2>c)Por meio de NamedQuery</h2>");
+            out.println("<ul>");
+            for (Grupo g : grupoinativoNQ) {
+                out.println("<li>" + g + "</li>");
+            }
+            
+            
+            out.println("</ul>");
+            
+            //Questao 12
+//            out.println("</ul>");
+//            out.println("<h2>12 - Grupos e Respectivos Lideres</h2>");
+//            out.println("<ul>");
+//            out.println("<h2>a)Por Meio de Query</h2>");
+//            out.println("<ul>");
+//            
+//            for (Object o: grupolider) {
+//                out.println("<li>" + o + "</li>");
+//            }
+//            out.println("</ul>");
+//            out.println("<h2>b)Por meio de TypedQuery</h2>");
+//            out.println("<ul>");
+//           for (Grupo g : grupoinativoTQ) {
+//                out.println("<li>" + g + "</li>");
+//            }
+//            
+//            out.println("</ul>");
+//
+//            out.println("<h2>c)Por meio de NamedQuery</h2>");
+//            out.println("<ul>");
+//            for (Grupo g : grupoinativoNQ) {
+//                out.println("<li>" + g + "</li>");
+//            }
+            
+            
+            out.println("</ul>");
+            
+            
             out.println("</body>");
             out.println("</html>");
+
         }
     }
 

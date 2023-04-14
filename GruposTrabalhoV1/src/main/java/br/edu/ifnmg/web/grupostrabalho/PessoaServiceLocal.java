@@ -35,4 +35,29 @@ public interface PessoaServiceLocal {
     List<Pessoa> buscarPessoasAvenidaTypedQuery();
 
     List<Pessoa> buscarPessoasAvenidaNamedQuery();
+
+    List<Pessoa> buscarPessoasNaoPraca();
+
+    List<Pessoa> buscarPessoasNaoPracaTypedQuery();
+
+    List<Pessoa> buscarPessoasNaoPracaNamedQuery();
+
+    List<Object[]> buscarPessoaTelefones();
+
+    List<Object[]> buscarPessoaTelefonesNamedQuery();
+
+    List<Object[]> buscarPessoaTelefonesTypedQuery();
+
+    List<Grupo> buscarGruposInativos();
+
+    List<Grupo> buscarGruposInativosTypedQuery();
+
+    List<Grupo> buscarGrupoInativosNamedQuery();
+    
+//    List<Object> buscarLideres();
+    
+//    List<Grupo> buscarLideresTypedQuery();
+//    
+//    List<Grupo> buscarLideresNamedQuery();
+
 }
