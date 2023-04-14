@@ -1,5 +1,6 @@
 package br.edu.ifnmg.web.grupostrabalho;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -193,12 +194,52 @@ public class PessoaService implements PessoaServiceLocal {
         return q.getResultList();
     }
 //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="pessoas que nasceram entre abril de 2001 e abril de 2004">
+
+    /**
+     * pessoas (dados completos) que nasceram entre abril de 2001 e abril de
+     * 2004?
+     */
+    @Override
+    public List<Pessoa> buscarNascimento(LocalDate dataMinima, LocalDate dataMaxima) {
+        TypedQuery q = em.createNamedQuery("Pessoa.findPeopleBirth", Pessoa.class);
+        q.setParameter("dataMinima", dataMinima);
+        q.setParameter("dataMaxima", dataMaxima);
+        return (List<Pessoa>) q.getResultList();
+    }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="pessoas não possuem telefone">
+    /**
+     * Quais pessoas (dados completos) não possuem telefone?
+     */
+    @Override
+    public List<Pessoa> buscarSemTelefone() {
+        return em.createNamedQuery("Pessoa.findPeopleNotPhone", Pessoa.class)
+                .getResultList();
+    }
     
+    
+    
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Telefones que cada pessoa tem">
+    /**
+     * Quantos telefones cada pessoa (nome) tem?
+     */
+    @Override
+    public List<Object[]> buscarQtdTelefone() {
+
+        Query q = em.createNamedQuery("Pessoa.findQuantityPhone", Object[].class);
+
+        return q.getResultList();
+    }
+    
+    
+//</editor-fold>
     
     
     
     //<editor-fold defaultstate="collapsed" desc="Grupos não Ativos">
-
     /**
      * Grupos Não Ativos
      */
@@ -221,25 +262,5 @@ public class PessoaService implements PessoaServiceLocal {
         return q.getResultList();
     }
 
-//</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Líderes dos grupos">
-//    @Override
-//    public List<Object> buscarLideres() {
-//        return em.createQuery("SELECT g.nome, g.lider FROM Grupo g ")
-//                .getResultList();
-//    }
-
-//    @Override
-//    public List<Grupo> buscarLideresTypedQuery() {
-//        TypedQuery q = em.createQuery(
-//                "SELECT g FROM Grupo g WHERE g.ativo = false", Grupo.class);
-//        return q.getResultList();
-//    }
-//
-//    @Override
-//    public List<Grupo> buscarLideresNamedQuery() {
-//        TypedQuery<Grupo> q = em.createNamedQuery("Grupo.findGroupInative", Grupo.class);
-//        return q.getResultList();
-//    }
 //</editor-fold>
 }

@@ -12,12 +12,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
  *
  * @author Hudson Rikelme <hudson.rikelme at ifnmg.edu.br>
  */
+@NamedQueries({
+    @NamedQuery(
+          name = "Grupo.findGroupLeader",
+            query = "SELECT new br.edu.ifnmg.web"
+            + ".grupostrabalho.GrupoLiderDTO(g.nome,l.nome)"
+            + " FROM Grupo g JOIN g.lider l"
+    ),
+    
+    
+    
+    
+    
+    
+    
+})
 @Entity
 public class Grupo implements Serializable {
 

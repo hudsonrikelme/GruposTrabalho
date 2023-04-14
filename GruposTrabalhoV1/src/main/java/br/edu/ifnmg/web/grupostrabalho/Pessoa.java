@@ -60,7 +60,22 @@ import javax.persistence.OneToOne;
     @NamedQuery(
             name = "Grupo.findGroupInative",
             query = "SELECT g FROM Grupo g WHERE g.ativo = false"
-    ),    
+    ), 
+    @NamedQuery(
+            name = "Pessoa.findPeopleBirth",
+            query = "SELECT p FROM Pessoa p WHERE p.nascimento"
+            + " BETWEEN :dataMinima AND :dataMaxima"
+    ),
+    @NamedQuery(
+            name = "Pessoa.findPeopleNotPhone",
+            query = "SELECT p FROM Pessoa p WHERE p.telefones IS EMPTY"
+    ),
+    @NamedQuery(
+            name = "Pessoa.findQuantityPhone",
+            query = "SELECT p.nome, COUNT(t.id)"
+                    + " FROM Pessoa p JOIN p.telefones t GROUP BY p.nome"
+    ),
+    
 })
 
 //</editor-fold>

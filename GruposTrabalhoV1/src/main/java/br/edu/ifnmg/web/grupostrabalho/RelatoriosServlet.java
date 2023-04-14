@@ -2,6 +2,8 @@ package br.edu.ifnmg.web.grupostrabalho;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,6 +23,9 @@ public class RelatoriosServlet extends HttpServlet {
 
     @Inject
     PessoaServiceLocal pessoaservice;
+
+    @Inject
+    GrupoServiceLocal gruposervice;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,11 +76,22 @@ public class RelatoriosServlet extends HttpServlet {
             List<Grupo> grupoinativo = pessoaservice.buscarGruposInativos();
             List<Grupo> grupoinativoTQ = pessoaservice.buscarGruposInativosTypedQuery();
             List<Grupo> grupoinativoNQ = pessoaservice.buscarGrupoInativosNamedQuery();
-            
+            //Buscar Pessoas Nascimento
+            List<Pessoa> pessoaNascimento = pessoaservice.
+                    buscarNascimento(
+                            LocalDate.of(2001, Month.APRIL, 01),
+                            LocalDate.of(2004, Month.APRIL, 30)
+                    );
+
+            //Pessoas sem Telefone
+            List<Pessoa> pessoaNaoTelefone = pessoaservice.buscarSemTelefone();
+
             //Buscar Grupos e respectivos Líderes
-//            List<Object> grupolider = pessoaservice.buscarLideres();
-            
-            
+            List<GrupoLiderDTO> grupoLider = gruposervice.buscarLideres();
+
+            //Buscar Quantidade de Telefones por pessoa
+            List<Object[]> quantidadeTelefone = pessoaservice.buscarQtdTelefone();
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -213,7 +229,7 @@ public class RelatoriosServlet extends HttpServlet {
             out.println("<ul>");
             out.println("<h2>a)Por Meio de Query</h2>");
             out.println("<ul>");
-            
+
             for (Object[] resultado : pessoaTelefones) {
                 String nome = (String) resultado[0];
                 Byte ddd = (Byte) resultado[1];
@@ -240,51 +256,59 @@ public class RelatoriosServlet extends HttpServlet {
                 out.println("<li>" + nome + "--> (" + ddd + ") " + numero + "</li>");
             }
             out.println("</ul>");
+            //Questao 7
+            out.println("</ul>");
+            out.println("<h2>07 - Pessoas Nascimento entre abril de 2001 e abril de 2004</h2>");
+            out.println("<ul>");
+            out.println("<ul>");
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            for (Pessoa p : pessoaNascimento) {
+                out.println("<li>" + p.getNome() + " ; "
+                        + p.getNascimento() + "</li>");
+            }
+            out.println("</ul>");
+
+            //Questao 9
+            out.println("</ul>");
+            out.println("<h2>09 - Pessoas que nao tem Telefone</h2>");
+            out.println("<ul>");
+            out.println("<ul>");
+
+            for (Pessoa p : pessoaNaoTelefone) {
+                out.print("<p>" + p.getNome() + "-->" + p.getTelefones() + "</p>");
+            }
+
+            out.println("</ul>");
+
+            //Questao 10
+            out.println("</ul>");
+            out.println("<h2>10 - Quantidade de Telefones por Pessoa</h2>");
+            out.println("<ul>");
+            out.println("<ul>");
+
+            for (Object[] p : quantidadeTelefone) {
+                out.print("<li>" + p[0] + "-->" + p[1] + "</li>");
+            }
+
+            out.println("</ul>");
+
             //Questao 11
             out.println("</ul>");
             out.println("<h2>11 - Grupos não ativos</h2>");
             out.println("<ul>");
             out.println("<h2>a)Por Meio de Query</h2>");
             out.println("<ul>");
-            
+
             for (Grupo g : grupoinativo) {
                 out.println("<li>" + g + "</li>");
             }
             out.println("</ul>");
             out.println("<h2>b)Por meio de TypedQuery</h2>");
             out.println("<ul>");
-           for (Grupo g : grupoinativoTQ) {
+            for (Grupo g : grupoinativoTQ) {
                 out.println("<li>" + g + "</li>");
             }
-            
+
             out.println("</ul>");
 
             out.println("<h2>c)Por meio de NamedQuery</h2>");
@@ -292,39 +316,25 @@ public class RelatoriosServlet extends HttpServlet {
             for (Grupo g : grupoinativoNQ) {
                 out.println("<li>" + g + "</li>");
             }
-            
-            
+
             out.println("</ul>");
-            
+
             //Questao 12
-//            out.println("</ul>");
-//            out.println("<h2>12 - Grupos e Respectivos Lideres</h2>");
-//            out.println("<ul>");
-//            out.println("<h2>a)Por Meio de Query</h2>");
-//            out.println("<ul>");
-//            
-//            for (Object o: grupolider) {
-//                out.println("<li>" + o + "</li>");
-//            }
-//            out.println("</ul>");
-//            out.println("<h2>b)Por meio de TypedQuery</h2>");
-//            out.println("<ul>");
-//           for (Grupo g : grupoinativoTQ) {
-//                out.println("<li>" + g + "</li>");
-//            }
-//            
-//            out.println("</ul>");
-//
-//            out.println("<h2>c)Por meio de NamedQuery</h2>");
-//            out.println("<ul>");
-//            for (Grupo g : grupoinativoNQ) {
-//                out.println("<li>" + g + "</li>");
-//            }
-            
-            
+            out.println("</ul>");
+            out.println("<h2>12 - Grupos e Respectivos Lideres</h2>");
+            out.println("<ul>");
+            for (GrupoLiderDTO grupo : grupoLider) {
+                out.print("<li>" + grupo + "</li>");
+            }
+
             out.println("</ul>");
             
             
+            
+            
+            
+            
+
             out.println("</body>");
             out.println("</html>");
 

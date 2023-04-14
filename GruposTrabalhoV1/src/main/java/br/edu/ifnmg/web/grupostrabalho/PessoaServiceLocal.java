@@ -1,5 +1,6 @@
 package br.edu.ifnmg.web.grupostrabalho;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -54,10 +55,10 @@ public interface PessoaServiceLocal {
 
     List<Grupo> buscarGrupoInativosNamedQuery();
     
-//    List<Object> buscarLideres();
-    
-//    List<Grupo> buscarLideresTypedQuery();
-//    
-//    List<Grupo> buscarLideresNamedQuery();
+    List<Pessoa> buscarNascimento(LocalDate dataMinima, LocalDate dataMaxima);
+
+    List<Pessoa> buscarSemTelefone();
+
+    List<Object[]> buscarQtdTelefone();
 
 }
