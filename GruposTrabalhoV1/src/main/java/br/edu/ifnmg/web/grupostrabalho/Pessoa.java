@@ -60,7 +60,7 @@ import javax.persistence.OneToOne;
     @NamedQuery(
             name = "Grupo.findGroupInative",
             query = "SELECT g FROM Grupo g WHERE g.ativo = false"
-    ), 
+    ),
     @NamedQuery(
             name = "Pessoa.findPeopleBirth",
             query = "SELECT p FROM Pessoa p WHERE p.nascimento"
@@ -73,10 +73,8 @@ import javax.persistence.OneToOne;
     @NamedQuery(
             name = "Pessoa.findQuantityPhone",
             query = "SELECT p.nome, COUNT(t.id)"
-                    + " FROM Pessoa p JOIN p.telefones t GROUP BY p.nome"
-    ),
-    
-})
+            + " FROM Pessoa p JOIN p.telefones t GROUP BY p.nome"
+    ),})
 
 //</editor-fold>
 public class Pessoa implements Serializable {

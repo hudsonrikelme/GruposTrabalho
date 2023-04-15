@@ -363,7 +363,6 @@ public class RelatoriosServlet extends HttpServlet {
             out.println("</ul>");
 
             //Questao 13
-            out.println("</ul>");
             out.println("<h2>13 - Membros do Estudo IV</h2>");
             out.println("<ul>");
             for (String g : grupoMembros) {
@@ -373,7 +372,6 @@ public class RelatoriosServlet extends HttpServlet {
             out.println("</ul>");
 
             //Questao 14
-            out.println("</ul>");
             out.println("<h2>14 - Grupos que Beatriz Yana é lider</h2>");
             out.println("<ul>");
             for (Grupo g : Lidergrupo) {
@@ -382,7 +380,6 @@ public class RelatoriosServlet extends HttpServlet {
             out.println("</ul>");
 
             //Questao 15
-            out.println("</ul>");
             out.println("<h2>15 - datas de início e de término da atuação e os grupos (nomes) nos quais “Cecília"
                     + " Xerxes” é membro?</h2>");
             out.println("<ul>");

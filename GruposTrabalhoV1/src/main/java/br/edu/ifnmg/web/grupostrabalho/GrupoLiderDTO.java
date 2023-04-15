@@ -5,6 +5,7 @@ package br.edu.ifnmg.web.grupostrabalho;
  * @author Hudson Rikelme <hudson.rikelme at ifnmg.edu.br>
  */
 public class GrupoLiderDTO {
+
     private String grupoNome;
     private String liderNome;
 
@@ -34,9 +35,9 @@ public class GrupoLiderDTO {
 
     @Override
     public String toString() {
-        return "GrupoLiderDTO{" 
-                + "grupoNome=" + grupoNome 
-                + ", liderNome=" + liderNome 
+        return "GrupoLiderDTO{"
+                + "grupoNome=" + grupoNome
+                + ", liderNome=" + liderNome
                 + '}';
     }
 }

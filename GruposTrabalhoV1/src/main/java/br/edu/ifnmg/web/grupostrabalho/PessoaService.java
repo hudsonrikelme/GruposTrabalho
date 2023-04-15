@@ -218,9 +218,7 @@ public class PessoaService implements PessoaServiceLocal {
         return em.createNamedQuery("Pessoa.findPeopleNotPhone", Pessoa.class)
                 .getResultList();
     }
-    
-    
-    
+
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Telefones que cada pessoa tem">
     /**
@@ -233,8 +231,7 @@ public class PessoaService implements PessoaServiceLocal {
 
         return q.getResultList();
     }
-    
-    
+
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Grupos não Ativos">
     /**
@@ -260,8 +257,4 @@ public class PessoaService implements PessoaServiceLocal {
     }
 
 //</editor-fold>
-    
-    
-    
-    
 }

@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
  */
 @NamedQueries({
     @NamedQuery(
-          name = "Grupo.findGroupLeader",
+            name = "Grupo.findGroupLeader",
             query = "SELECT new br.edu.ifnmg.web"
             + ".grupostrabalho.GrupoLiderDTO(g.nome,l.nome)"
             + " FROM Grupo g JOIN g.lider l"
@@ -33,7 +33,7 @@ import javax.persistence.OneToMany;
             + "g.lider.nome = :nome"
     ),
     @NamedQuery(
-            name = "Grupo.findGrupoNomeParte",
+            name = "Grupo.findGroupPart",
             query = "SELECT g FROM Grupo g "
             + "WHERE g.nome LIKE CONCAT('%', :nome , '%')"
     ),
@@ -48,51 +48,47 @@ import javax.persistence.OneToMany;
     @NamedQuery(
             name = "Grupo.findNomesQtdAtuacoes",
             query = "SELECT g.nome, COUNT(DISTINCT a.id)"
-                    + " FROM Grupo g JOIN g.atuacoes a"
-                    + " WHERE SIZE(g.atuacoes) >= :qtd"
-                    + " GROUP BY g.id, g.nome"
+            + " FROM Grupo g JOIN g.atuacoes a"
+            + " WHERE SIZE(g.atuacoes) >= :qtd"
+            + " GROUP BY g.id, g.nome"
     ),
-    
+
     @NamedQuery(
             name = "Grupo.findMembrosAPartirData",
             query = "SELECT DISTINCT p.nome FROM Atuacao a"
-                    + " JOIN a.pessoa p"
-                    + " JOIN a.grupo g"
-                    + " WHERE EXTRACT(YEAR FROM a.inicio) >= :ano"
-                    + " AND g.id = :id"
+            + " JOIN a.pessoa p"
+            + " JOIN a.grupo g"
+            + " WHERE EXTRACT(YEAR FROM a.inicio) >= :ano"
+            + " AND g.id = :id"
     ),
     @NamedQuery(
             name = "Grupo.findNomesMembrosEntradaParam",
             query = "SELECT new br.edu.ifnmg.web.grupostrabalho.MembroDTO(g.nome, p.nome, a.inicio)"
-                    + " FROM Atuacao a"
-                    + " JOIN a.pessoa p"
-                    + " JOIN a.grupo g"
-                    + " WHERE a.inicio >= :data"
-                    + " AND g.id = :gid"
-                    + " ORDER BY g.nome, a.inicio"
+            + " FROM Atuacao a"
+            + " JOIN a.pessoa p"
+            + " JOIN a.grupo g"
+            + " WHERE a.inicio >= :data"
+            + " AND g.id = :gid"
+            + " ORDER BY g.nome, a.inicio"
     ),
     @NamedQuery(
-            name = "Grupo.nomeMembroSemTermino",
+            name = "Grupo.endlessMember",
             query = "SELECT g.nome, p.nome FROM Atuacao a"
-                    + " JOIN a.pessoa p"
-                    + " JOIN a.grupo g "
-                    + " WHERE a.termino IS NULL"
+            + " JOIN a.pessoa p"
+            + " JOIN a.grupo g "
+            + " WHERE a.termino IS NULL"
     ),
-  
+
     @NamedQuery(
-            name = "Grupo.findNomeLiderMembros",
+            name = "Grupo.findLeaderMember",
             query = "SELECT DISTINCT g.nome, l.nome, p.nome FROM Grupo g"
-                    + " JOIN g.atuacoes a"
-                    + " JOIN a.pessoa p"
-                    + " JOIN g.lider l"
-                    + " WHERE a.grupo.nome = g.nome"
-                    + " ORDER BY g.nome, l.nome, p.nome"
+            + " JOIN g.atuacoes a"
+            + " JOIN a.pessoa p"
+            + " JOIN g.lider l"
+            + " WHERE a.grupo.nome = g.nome"
+            + " ORDER BY g.nome, l.nome, p.nome"
     )
-    
-    
-    
-    
-    
+
 })
 @Entity
 public class Grupo implements Serializable {

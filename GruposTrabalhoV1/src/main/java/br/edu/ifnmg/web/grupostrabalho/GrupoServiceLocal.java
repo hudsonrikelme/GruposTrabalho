@@ -10,6 +10,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface GrupoServiceLocal {
+
     List<GrupoLiderDTO> buscarLideres();
 
     List<String> buscarMembrosGrupo(String grupo);

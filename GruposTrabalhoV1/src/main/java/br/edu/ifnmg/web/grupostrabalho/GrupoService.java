@@ -36,10 +36,8 @@ public class GrupoService implements GrupoServiceLocal {
                 .setParameter("grupo", grupo)
                 .getResultList();
     }
-    
-    
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="grupos liderados Beatriz Yana">
     /**
      * Quais são os grupos (dados completos) liderados por “Beatriz Yana”?
@@ -51,13 +49,9 @@ public class GrupoService implements GrupoServiceLocal {
                 .setParameter("nome", lider)
                 .getResultList();
     }
-    
-    
-    
-    
-    
+
 //</editor-fold>
-    
+    //<editor-fold defaultstate="collapsed" desc="Datas Membro do Grupo">
     @Override
     public List<Object[]> buscarDatasNomeGrupoMembro(String nome) {
         return em.createNamedQuery("Atuacao.findDatasNomeGrupoMembro", Object[].class)
@@ -65,19 +59,25 @@ public class GrupoService implements GrupoServiceLocal {
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Grupo Nome Parte">
     @Override
     public List<Grupo> buscarGrupoNomeParte(String nome) {
-        return em.createNamedQuery("Grupo.findGrupoNomeParte", Grupo.class)
+        return em.createNamedQuery("Grupo.findGroupPart", Grupo.class)
                 .setParameter("nome", nome)
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Quantidade de Membros">
     @Override
     public List<Object[]> buscarNomesQtdMembros() {
         return em.createNamedQuery("Grupo.findNomeQtdMembros", Object[].class)
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Nomes Maiores">
     @Override
     public List<Object[]> buscarNomesMaiorQtd(Integer qtd) {
 
@@ -86,6 +86,8 @@ public class GrupoService implements GrupoServiceLocal {
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Grupo Data Nome">
     @Override
     public List<String> buscarGrupoDataNome(Integer ano, Long grupoid) {
         return em.createNamedQuery("Grupo.findMembrosAPartirData", String.class)
@@ -94,6 +96,8 @@ public class GrupoService implements GrupoServiceLocal {
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Nomes de Membros Inicio">
     @Override
     public List<MembroDTO> buscarNomesMembrosInicioParam(Long gid, LocalDate data) {
         return em.createNamedQuery("Grupo.findNomesMembrosEntradaParam", MembroDTO.class)
@@ -102,19 +106,21 @@ public class GrupoService implements GrupoServiceLocal {
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Membros Sem Termino">
     @Override
     public List<Object[]> buscarNomesMembrosSemTermino() {
-        return em.createNamedQuery("Grupo.nomeMembroSemTermino",Object[].class)
+        return em.createNamedQuery("Grupo.endlessMember", Object[].class)
                 .getResultList();
     }
 
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="LiderMembros">
     @Override
     public List<Object[]> buscarNomeLiderMembros() {
-        return em.createNamedQuery("Grupo.findNomeLiderMembros",Object[].class)
+        return em.createNamedQuery("Grupo.findLeaderMember", Object[].class)
                 .getResultList();
     }
-    
-    
-    
-    
+
+//</editor-fold>
 }

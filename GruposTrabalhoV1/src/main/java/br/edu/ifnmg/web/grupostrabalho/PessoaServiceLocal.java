@@ -54,7 +54,7 @@ public interface PessoaServiceLocal {
     List<Grupo> buscarGruposInativosTypedQuery();
 
     List<Grupo> buscarGrupoInativosNamedQuery();
-    
+
     List<Pessoa> buscarNascimento(LocalDate dataMinima, LocalDate dataMaxima);
 
     List<Pessoa> buscarSemTelefone();
