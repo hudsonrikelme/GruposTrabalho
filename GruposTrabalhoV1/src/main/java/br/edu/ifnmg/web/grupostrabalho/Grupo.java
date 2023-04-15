@@ -27,8 +27,67 @@ import javax.persistence.OneToMany;
             + ".grupostrabalho.GrupoLiderDTO(g.nome,l.nome)"
             + " FROM Grupo g JOIN g.lider l"
     ),
+    @NamedQuery(
+            name = "Grupo.findLeaderGroup",
+            query = "SELECT g FROM Grupo g WHERE "
+            + "g.lider.nome = :nome"
+    ),
+    @NamedQuery(
+            name = "Grupo.findGrupoNomeParte",
+            query = "SELECT g FROM Grupo g "
+            + "WHERE g.nome LIKE CONCAT('%', :nome , '%')"
+    ),
+    @NamedQuery(
+            name = "Grupo.findNomeQtdMembros",
+            query = "SELECT g.nome, COUNT(DISTINCT p.id)"
+            + " FROM Grupo g"
+            + " JOIN g.atuacoes a"
+            + " JOIN a.pessoa p"
+            + " GROUP BY g.id, g.nome"
+    ),
+    @NamedQuery(
+            name = "Grupo.findNomesQtdAtuacoes",
+            query = "SELECT g.nome, COUNT(DISTINCT a.id)"
+                    + " FROM Grupo g JOIN g.atuacoes a"
+                    + " WHERE SIZE(g.atuacoes) >= :qtd"
+                    + " GROUP BY g.id, g.nome"
+    ),
     
-    
+    @NamedQuery(
+            name = "Grupo.findMembrosAPartirData",
+            query = "SELECT DISTINCT p.nome FROM Atuacao a"
+                    + " JOIN a.pessoa p"
+                    + " JOIN a.grupo g"
+                    + " WHERE EXTRACT(YEAR FROM a.inicio) >= :ano"
+                    + " AND g.id = :id"
+    ),
+    @NamedQuery(
+            name = "Grupo.findNomesMembrosEntradaParam",
+            query = "SELECT new br.edu.ifnmg.web.grupostrabalho.MembroDTO(g.nome, p.nome, a.inicio)"
+                    + " FROM Atuacao a"
+                    + " JOIN a.pessoa p"
+                    + " JOIN a.grupo g"
+                    + " WHERE a.inicio >= :data"
+                    + " AND g.id = :gid"
+                    + " ORDER BY g.nome, a.inicio"
+    ),
+    @NamedQuery(
+            name = "Grupo.nomeMembroSemTermino",
+            query = "SELECT g.nome, p.nome FROM Atuacao a"
+                    + " JOIN a.pessoa p"
+                    + " JOIN a.grupo g "
+                    + " WHERE a.termino IS NULL"
+    ),
+  
+    @NamedQuery(
+            name = "Grupo.findNomeLiderMembros",
+            query = "SELECT DISTINCT g.nome, l.nome, p.nome FROM Grupo g"
+                    + " JOIN g.atuacoes a"
+                    + " JOIN a.pessoa p"
+                    + " JOIN g.lider l"
+                    + " WHERE a.grupo.nome = g.nome"
+                    + " ORDER BY g.nome, l.nome, p.nome"
+    )
     
     
     

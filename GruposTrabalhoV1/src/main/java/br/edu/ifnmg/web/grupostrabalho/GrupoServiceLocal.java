@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/SessionLocal.java to edit this template
- */
 package br.edu.ifnmg.web.grupostrabalho;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,4 +11,24 @@ import javax.ejb.Local;
 @Local
 public interface GrupoServiceLocal {
     List<GrupoLiderDTO> buscarLideres();
+
+    List<String> buscarMembrosGrupo(String grupo);
+
+    List<Grupo> buscarGruposLider(String lider);
+
+    List<Object[]> buscarDatasNomeGrupoMembro(String nome);
+
+    List<Grupo> buscarGrupoNomeParte(String nome);
+
+    List<Object[]> buscarNomesQtdMembros();
+
+    List<Object[]> buscarNomesMaiorQtd(Integer qtd);
+
+    List<String> buscarGrupoDataNome(Integer ano, Long grupoid);
+
+    List<Object[]> buscarNomesMembrosSemTermino();
+
+    List<Object[]> buscarNomeLiderMembros();
+
+    List<MembroDTO> buscarNomesMembrosInicioParam(Long gid, LocalDate data);
 }

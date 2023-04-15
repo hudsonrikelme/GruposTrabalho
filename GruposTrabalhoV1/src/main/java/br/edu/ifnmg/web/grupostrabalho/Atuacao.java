@@ -9,11 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Hudson Rikelme <hudson.rikelme at ifnmg.edu.br>
  */
+@NamedQueries({
+    @NamedQuery(
+            name = "Atuacao.findMemberGroup",
+            query = "SELECT a.pessoa.nome FROM Atuacao a"
+            + " WHERE a.grupo.nome = :grupo "
+            + "ORDER BY a.pessoa.nome DESC"
+    ),
+    @NamedQuery(
+            name = "Atuacao.findDatasNomeGrupoMembro",
+            query = "SELECT a.inicio,a.termino,a.grupo.nome FROM"
+            + " Atuacao a WHERE a.pessoa.nome = :nome"
+    )
+})
 @Entity
 public class Atuacao implements Serializable {
 

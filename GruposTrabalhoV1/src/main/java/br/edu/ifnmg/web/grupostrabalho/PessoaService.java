@@ -236,9 +236,6 @@ public class PessoaService implements PessoaServiceLocal {
     
     
 //</editor-fold>
-    
-    
-    
     //<editor-fold defaultstate="collapsed" desc="Grupos não Ativos">
     /**
      * Grupos Não Ativos
@@ -263,4 +260,8 @@ public class PessoaService implements PessoaServiceLocal {
     }
 
 //</editor-fold>
+    
+    
+    
+    
 }
